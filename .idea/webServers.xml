@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ed8a92da-5ea0-4aa1-bf65-2da759a7361e" name="Zero" url="http://192.168.1.12/motoTracking/">
+        <fileTransfer rootFolder="/var/www/html/motoTracking" accessType="SFTP" host="192.168.1.12" port="22" sshConfigId="deff81ef-257b-4a69-a56b-0774f4250233" sshConfig="Zero">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

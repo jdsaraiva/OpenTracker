@@ -13,10 +13,59 @@
     <div class="col-3 section"></div>
     <div class="col-6 section form">
         <form>
-            <button type="submit" class="btn btn-primary">Start tracking</button>
+            <button type="submit" id="start-tracking" class="btn btn-primary">Start tracking</button>
         </form>
     </div>
     <div class="col-3 section"></div>
 </div>
+<script>
+
+    const Http = new XMLHttpRequest();
+    const url='http://192.168.1.46:3000/sendLocation'; // Local
+    // Servidor ( Zero )
+
+    let date = Date.now();
+    let currentLocation = null;
+
+    function successCallback(position) {
+        
+        console.log(position.coords.latitude);
+        currentLocation = position.coords.latitude;
+
+        alert(position.coords.latitude);
+
+    }
+
+    function failureCallback() {
+
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+    } else {
+        console.innerHTML = "Geolocation is not supported by this browser.";
+    }
+
+    let params = 'id=teste,location=' + currentLocation + ',timestamp=' + date;
+
+    Http.open('POST', url, true);
+
+    Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    document.getElementById("start-tracking")
+        .addEventListener("click", function(event) {
+
+            Http.send(params);
+            // console.log(params);
+
+            Http.onreadystatechange = (e) => {
+                console.log(Http.responseText)
+            }
+
+            event.preventDefault();
+
+        });
+
+</script>
 </body>
 </html>
